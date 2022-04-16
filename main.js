@@ -187,7 +187,7 @@ function Darker() {
 };
 //自动切换
 function AutoDarker() {
-    var hour = 1; //new Date().getHours();
+    var hour = new Date().getHours();
     if (hour <= 5 || hour >= 22) {
         document.body.classList.add('dark-theme');
         }
