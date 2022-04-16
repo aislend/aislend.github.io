@@ -222,16 +222,6 @@ blockquote {
 
 
 
-/*输入框: 
-input[type="number"] {
-    width:fit-content;
-}
-input:not([type="reset"]):read-only
-{
-    background-color: #f0f0f0;
-    border: 1px solid #b1b1b1;
-}
-*/
 
 /*水平导航栏 (用列表实现): 
 <ul class="menu"><!--导航栏-->
