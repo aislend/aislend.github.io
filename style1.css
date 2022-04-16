@@ -1,0 +1,40 @@
+body {font-family:"微软雅黑";background:url('image/bg.jpg') fixed;background-size: cover;}
+h1,h2,h3 {color:#070779;} /*分组选择器.每个选择器之间逗号隔开*/
+ul {list-style-type:circle;}
+
+/*水平导航栏(列表): */
+ul.menu {
+    /*删除列表标记和边距、填充; 指定背景色和宽度*/
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    background-color: #070779;
+    overflow: hidden;
+    /*导航栏水平+顶部固定*/
+    position: fixed;
+    top: 0;
+    width: 100%;
+}
+ul.menu li {
+    float: left;   /*列表项水平排列. 如果用内联则写成 display:inline; */
+}
+ul.menu li a {
+    /*显示块元素的链接，让整体变为可点击链接区域（不只是文本），它允许我们指定宽度*/
+    display: block;
+    width: 100px; /*每块的宽度相等,无论显示文字长短*/
+    /*设置列表项为白色文字,居中,去掉下划线等*/
+    color: white;
+    text-align: center;
+    text-decoration: none;
+    padding: 12px;
+}
+/*鼠标移动到选项上修改背景颜色*/
+ul.menu li a:hover {
+    background-color: #d5e5f8;
+    color: #000000;
+}
+/*选中后变色 (当前导航条)*/
+ul.menu li a:active {
+    background-color: #724caf;
+    color: white;
+}
