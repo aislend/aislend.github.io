@@ -1,5 +1,3 @@
-//监听事件,只能把<script>放到HTML末尾而不能把js写成两个window.onload,第二个会覆盖第一个
-
 function Disable(id) {
     document.getElementById(id).setAttribute('disabled', 'disabled');
 };
@@ -15,14 +13,12 @@ function GetChartPtt(basePotential = new Number, score = new Number) {
 else if (score >= 9800000) {chartPtt = basePotential + 1 + (score - 9800000) / 200000;}
 else if (basePotential + (score - 9500000) / 300000 > 0) {chartPtt = basePotential + (score - 9500000) / 300000;}
     else {chartPtt = 0;}
-
     return chartPtt
 };
 function Getscore(basePotential = new Number, chartPtt = new Number) {
     let score = new Number;
     if (chartPtt >= basePotential + 1) {score = 200000 * (chartPtt - basePotential - 1) + 9800000;}
     else {score = 300000 * (chartPtt - basePotential) + 9500000;}
-
     return Math.round(score)
 };
 
@@ -195,39 +191,5 @@ function AutoDarker() {
 
 
 
-
-
-
-
-// 关灯切换
-/*this.night = function () {
-    if(body.classList.contains('dark-theme')){
-        body.classList.remove('dark-theme');
-        document.cookie = 'night=false;' + 'path=/;' + 'max-age=21600';
-    }
-    else{
-        body.classList.add('dark-theme');
-        document.cookie = 'night=true;' + 'path=/;' + 'max-age=21600';
-    }
-};
-// 如果开启自动夜间模式
-
-    var hour = new Date().getHours();
-
-    if(document.cookie.indexOf('night') === -1 && (hour <= 5 || hour >= 22)){
-        document.body.classList.add('dark-theme');
-        document.cookie = 'night=true;' + 'path=/;' + 'max-age=21600';
-    }
-
-
-    if(document.cookie.indexOf('night=true') !== -1){
-        document.body.classList.add('dark-theme');
-    }
-    else{
-        document.body.classList.remove('dark-theme');
-    }
-}
-*/
-
-//清空元素,怎么写都不行,typeerror (...).setAttribute is not a function
+//清空元素.找不出bug原因,放置中,typeerror (...).setAttribute is not a function
 //function CleanAllresults() {document.getElementsByClassName('result').setAttribute('color','white');}
