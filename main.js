@@ -1,3 +1,4 @@
+//禁用input以提示两者不同时参与计算
 function Disable(id) {
     document.getElementById(id).setAttribute('disabled', 'disabled');
 };
@@ -13,12 +14,14 @@ function GetChartPtt(basePotential = new Number, score = new Number) {
 else if (score >= 9800000) {chartPtt = basePotential + 1 + (score - 9800000) / 200000;}
 else if (basePotential + (score - 9500000) / 300000 > 0) {chartPtt = basePotential + (score - 9500000) / 300000;}
     else {chartPtt = 0;}
+
     return chartPtt
 };
 function Getscore(basePotential = new Number, chartPtt = new Number) {
     let score = new Number;
     if (chartPtt >= basePotential + 1) {score = 200000 * (chartPtt - basePotential - 1) + 9800000;}
     else {score = 300000 * (chartPtt - basePotential) + 9500000;}
+
     return Math.round(score)
 };
 
@@ -191,5 +194,9 @@ function AutoDarker() {
 
 
 
-//清空元素.找不出bug原因,放置中,typeerror (...).setAttribute is not a function
+
+
+
+
+//typeerror (...).setAttribute is not a function
 //function CleanAllresults() {document.getElementsByClassName('result').setAttribute('color','white');}
