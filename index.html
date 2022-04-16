@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>Arcaea计算工具</title>
+    <link rel="stylesheet" type="text/css" href="main.css">
+    <script src="main.js"></script>
+</head>
+<body>
+
+    <button onclick="" style="position: fixed; left: 20px; top: 20px;">ResetAll</button>
+    <button onclick="Darker()" style="position: fixed; right: 20px; top: 20px;">Theme</button>
+    <div class="header"><h2>Arcaea 在线小工具</h2></div>
+    <div class="menu"><!--导航栏-->
+        <a href="#divptt" tabindex="0">ptt计算</a>
+        <a href="#divworld" tabindex="0">爬梯步数计算</a>
+        <a href="#divbyd" tabindex="0">爬绳百分比计算</a>
+        <a href="#divctrl" tabindex="0">控分工具</a>
+        <a href="#divbaseptt" tabindex="0">谱面定数估测</a>
+    </div>
+
+<div class="main">
+
+    <div id="divptt" class="anchor"></div>
+    <div class="tools">
+        <form>
+            <input type="reset" style="float: right;"><!--重置按钮-->
+            谱面定数：<input type="number" step="0.1" id="baseptt" value="10.4" required="required"><br>
+            分数：<input type="number" id="score" value="9876543">
+            单曲ptt：<input type="number" id="chartptt" value="11.53"><br>
+        </form>
+        <button onclick="PTTs('getchtptt')">计算单曲ptt</button>
+        <nobr id="getchtptt" class="result"></nobr><br>
+        <button onclick="PTTs('getscore')">计算所需分数</button>
+        <nobr id="getscore" class="result"></nobr>
+
+        <form>
+            <input type="reset" style="float: right;"><!--重置按钮-->
+            目标PTT：<input type="number" id="goalptt" value="12.6" required="required"><br>
+            best30：<input type="number" id="best30" value="12.5">
+            recent10：<input type="number" id="recent10" value="12.18"><br>
+        </form>
+        <button onclick="PTTs('getr10')">计算所需recent10</button>
+        <nobr id="getr10" class="result"></nobr><br>
+        <button onclick="PTTs('getb30')">计算所需best30</button>
+        <nobr id="getb30" class="result"></nobr>
+    </div>
+
+    <div id="divworld" class="anchor"></div>
+    <div class="tools">
+        <form>
+            <input type="reset" style="float: right;"><!--重置按钮-->
+            结算ptt：<input type="number" step="0.1" id="playrt" 
+                        onfocus="Disable('actualsteps')" onblur="Reable ('actualsteps')">
+            实际步数：<input type="number" step="0.1" id="actualsteps" 
+                        onfocus="Disable('playrt')" onblur="Reable('playrt')"><br>
+            搭档step：<input type="number" step="0.1" id="waifustep" required="required"><br><br>
+            额外加成：<br>
+            play+ <select type="number" id="stamina">
+                <option value="1">不使用</option>
+                <option value="2">2体力</option>
+                <option value="4">4体力</option>
+                <option value="6">6体力</option>
+            </select><br>
+            碎片 <select type="number" id="frag">
+                <option value="1">不使用</option>
+                <option value="1.1">-15</option>
+                <option value="1.25">250</option>
+                <option value="1.5">500</option>
+            </select><br>
+            氪x4 <select type="number" id="X4">
+                <option value="1">否</option>
+                <option value="4">是</option>
+            </select><br>
+        </form>
+        <button onclick="WorldSteps('getsteps')">计算最终步数</button>
+        <nobr id="getsteps" class="result"></nobr><br>
+        <button onclick="WorldSteps('getplayrt')">反推结算ptt</button>
+        <nobr id="getplayrt" class="result"></nobr>
+    </div>
+
+    <div id="divbyd" class="anchor"></div>
+    <div class="tools">
+        <form>
+            <input type="reset" style="float: right;"><!--重置按钮-->
+            结算ptt：<input type="number" step="0.1" id="playrtbyd" 
+                        onfocus="Disable('actualperc')" onblur="Reable ('actualperc')">
+            实际百分比：<input type="number" step="0.1" id="actualperc" 
+                        onfocus="Disable('playrtbyd')" onblur="Reable('playrtbyd')">%<br>
+            搭档over：<input type="number" step="0.1" id="waifuover" required="required"><br>
+            搭档契合：<input type="number" step="0.1" id="waifuaffi" value="1" required="required"><br>
+            地图系数：<input type="number" step="0.1" id="mapfac" required="required"><br>
+            残片深化：<br><select type="number" id="boost">
+                <option value="1">不使用</option>
+                <option value="1.1">-15</option>
+                <option value="1.25">250</option>
+                <option value="1.5">500</option>
+            </select><br>
+            挑战状态：<br><select type="number" id="clearfac">
+                <option value="3">TC</option>
+                <option value="1">TL/未触发</option>
+            </select><br>
+        </form>
+        <button onclick="BydPercent('getperc')">计算爬升百分比</button>
+        <nobr id="getperc" class="result"></nobr><br>
+        <button onclick="BydPercent('getmapfac')">反推地图系数</button>
+        <nobr id="getmapfac" class="result"></nobr>
+        <blockquote>反推得出的地图系数误差可能较大，仅供参考。可靠值见fandom wiki：<a href="https://arcaea.fandom.com/wiki/World_Mode_Chapters/Lost_Chapter:_Beyond">Map Factor</a></blockquote>
+    </div>
+
+    <div id="divctrl" class="anchor"></div>
+    <div class="tools">
+        <form>
+            <input type="reset" style="float: right;"><!--重置按钮-->
+            谱面物量：<input type="number" id="ctrlnotes"><br>
+            谱面定数：<input type="number" step="0.1" id="ctrlbaseptt" required="required"><br>
+            控ptt ≤ <input type="number" step="0.1" id="ctrlptt"><br>
+            控分 ≤ <input type="number" step="0.1" id="ctrlscore"><br>
+            选择计算方式：
+            <select type="text" id="ctrltype">
+                <option>不超ptt</option>
+                <option>不超分</option>
+            </select><br>
+        </form>
+        <button onclick="CtrlPFL()">计算结果</button>
+        <nobr id="getctrl" class="result"></nobr>
+    </div>
+
+    <div id="divbaseptt" class="anchor"></div>
+    <div class="tools">
+        <form>
+            <input type="reset" style="float: right;"><!--重置按钮-->
+            歌名：<input type="text" id="songname" style="width: 35%;">
+            难度：<select type="text" id="difftype" style="width: 14%;">
+                <option>FTR</option>
+                <option>BYD</option>
+                <option>PRS</option>
+            </select>
+            标级：<input type="text" id="diff" style="width: 10%;"><br>
+            分数：<input type="number" id="playscore" required="required"><br>
+            搭档step：<input type="number" step="0.1" id="step" required="required"><br>
+            加成前步数：<input type="number" step="0.1" id="stepsbefore" required="required"><br>
+            加成后步数：<input type="number" step="0.1" id="stepsafter" required="required"><br>
+            步数真值上限：<input id="stepsceiling" readonly><br>
+            步数真值下限：<input id="stepsfloor" readonly><br>
+            定数上限：<input id="baseceiling" readonly><br>
+            定数下限：<input id="basefloor" readonly><br>
+        </form>
+        <button onclick="BasePotential()">计算结果</button>
+        <nobr id="getbase" class="result"></nobr>
+    </div>
+    
+    <br>
+    <p>"Arcaea" is a mobile game developed by lowiro limited, and this page/tool is not affiliated with lowiro or Arcaea.</p>
+
+</div>
+
+</body>
+    <!--
+        <p>清除所有计算结果：<button onclick="CleanAllresults()">点我</button></p>
+        <button id="test">测试</button>
+        <p id="demo">测试文本</p>
+    -->
+</html>
