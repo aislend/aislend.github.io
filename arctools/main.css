@@ -178,9 +178,10 @@ blockquote {
     background-color: #333;
 }
 .dark-theme .menu a {
+    color: #a2b5d3;
     box-shadow: 0 .125rem .125rem 0 rgba(234, 243, 255, 0.2);
 }
-.dark-theme .menu a:link {color: #576ea8;}
+.dark-theme .menu a:link {color: #a2b5d3;}
 .dark-theme .menu a:focus, .dark-theme .menu a:hover {
     background-color: #434c62;
     color: #e6eeff;
